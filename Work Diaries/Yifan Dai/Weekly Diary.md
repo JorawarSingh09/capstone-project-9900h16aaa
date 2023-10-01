@@ -4,7 +4,7 @@
 - Start to learn about different project topics
 
 ## Week 2
--  and form a new team
+- Join and form a new team
 - Decide the designated project topic
 - Learn some basic ideas about ESG
 - Join the GitHub classroom and Jira
