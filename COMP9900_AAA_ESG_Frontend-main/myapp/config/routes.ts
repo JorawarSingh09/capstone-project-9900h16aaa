@@ -30,5 +30,6 @@ export default [
   },
 
   { path: '/', redirect: '/add_chart' },
+  // { path: '*', layout: false, component: './404' },
   { path: '*', layout: false, component: './404' },
 ];
