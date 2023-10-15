@@ -1,6 +1,7 @@
 import { userRegisterUsingPOST } from '@/services/ant-design-pro/userController';
 import { ContainerOutlined, LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
+
 import { useEmotionCss } from '@ant-design/use-emotion-css';
 import { history } from '@umijs/max';
 import { message } from 'antd';
@@ -69,6 +70,9 @@ const Register: React.FC = () => {
                   fieldProps={{
                     size: 'large',
                     prefix: <UserOutlined />,
+                    style: {
+                      backgroundColor: 'white',
+                    },
                   }}
                   placeholder="Input NickName"
                   rules={[
@@ -83,6 +87,9 @@ const Register: React.FC = () => {
                   fieldProps={{
                     size: 'large',
                     prefix: <ContainerOutlined />,
+                    style: {
+                      backgroundColor: 'white',
+                    },
                   }}
                   placeholder="Input Email"
                   rules={[
@@ -97,6 +104,9 @@ const Register: React.FC = () => {
                   fieldProps={{
                     size: 'large',
                     prefix: <LockOutlined />,
+                    style: {
+                      backgroundColor: 'white',
+                    },
                   }}
                   placeholder="Input Password"
                   rules={[
@@ -116,6 +126,9 @@ const Register: React.FC = () => {
                   fieldProps={{
                     size: 'large',
                     prefix: <LockOutlined />,
+                    style: {
+                      backgroundColor: 'white',
+                    },
                   }}
                   placeholder="Double Input Password"
                   rules={[

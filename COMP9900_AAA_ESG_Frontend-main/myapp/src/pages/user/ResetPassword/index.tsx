@@ -101,9 +101,13 @@ const ResetPassword: React.FC = () => {
                   fieldProps={{
                     size: 'large',
                     prefix: <ContainerOutlined />,
+                    style: {
+                      backgroundColor: 'white',
+                    },
                     addonAfter: (
                       <button
                         type="button"
+                        style={{ backgroundColor: 'initial' }}  // 重置按钮的背景颜色
                         disabled={!isEmailValid}
                         onClick={() => handleSendCode({ email: emailValue })}
                       >
@@ -129,6 +133,9 @@ const ResetPassword: React.FC = () => {
                   fieldProps={{
                     size: 'large',
                     prefix: <LockOutlined />,
+                    style: {
+                      backgroundColor: 'white',
+                    },
                   }}
                   placeholder="Input Verify COde"
                   rules={[
@@ -145,6 +152,9 @@ const ResetPassword: React.FC = () => {
               fieldProps={{
                 size: 'large',
                 prefix: <LockOutlined />,
+                style: {
+                  backgroundColor: 'white',
+                },
                 onChange: (e) => setNewPassword(e.target.value),
               }}
               placeholder="Input New Password"

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/COMP9900H16AAABackend-master/COMP9900H16AAABackend.iml" filepath="$PROJECT_DIR$/COMP9900H16AAABackend-master/COMP9900H16AAABackend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/capstone-project-9900h16aaa.iml" filepath="$PROJECT_DIR$/.idea/capstone-project-9900h16aaa.iml" />
     </modules>
   </component>
