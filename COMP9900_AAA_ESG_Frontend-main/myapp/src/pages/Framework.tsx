@@ -1,7 +1,6 @@
 import { getDefaultFrameworkUsingGET } from '@/services/ant-design-pro/userController';
 import { EditOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
-import { useModel } from '@umijs/max';
 import { Button, Card, theme } from 'antd';
 import React, { useEffect, useState } from 'react';
 
@@ -72,6 +71,9 @@ const InfoCard: React.FC<{
   );
 };
 
+
+
+
 function handleEditClick() {
   console.log("Edit button clicked!");
   // 你可以在这里放入其他的代码来定义你的逻辑
@@ -79,7 +81,7 @@ function handleEditClick() {
 
 const Framework: React.FC = () => {
   const { token } = theme.useToken();
-  const { initialState } = useModel('@@initialState');
+  // const { initialState } = useModel('@@initialState');
   const [cards, setCards] = useState<API.FrameworkDTO[]>([]);
 
   useEffect(() => {
@@ -136,6 +138,8 @@ const Framework: React.FC = () => {
                 onEdit = {handleEditClick}
               />
             ))}
+
+
           </div>
         </div>
       </Card>

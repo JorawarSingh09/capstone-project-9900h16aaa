@@ -3,7 +3,7 @@ import { getDefaultFrameworkUsingGET } from '@/services/ant-design-pro/userContr
 import { PageContainer, ProCard } from '@ant-design/pro-components';
 import { Button, Modal, message } from 'antd';
 import React, { useEffect, useState } from 'react';
-import ReportTable from './ReportTable'; 
+import ReportTable from './ReportTable';
 import './index.less';
 
 const handleAdd = async (fields: API.ReportDTO) => {
@@ -95,6 +95,7 @@ const addChart: React.FC = () => {
             </div>
           ))}
         </ProCard>
+
       </PageContainer>
       <Modal title="New Report" open={isModalVisible} onCancel={handleCancel}>
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
