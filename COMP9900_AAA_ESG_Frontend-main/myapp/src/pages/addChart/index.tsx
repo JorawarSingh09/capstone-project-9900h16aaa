@@ -85,7 +85,7 @@ const addChart: React.FC = () => {
         tabProps={{
           type: 'editable-card',
           hideAdd: false,
-          onEdit: (e, action) => console.log(e, action),
+          onEdit: (e : any, action: any) => console.log(e, action),
         }}
       >
         <ProCard direction="column" ghost gutter={[0, 16]}>
