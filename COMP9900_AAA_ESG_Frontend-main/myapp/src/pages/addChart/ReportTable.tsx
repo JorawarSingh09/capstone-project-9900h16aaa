@@ -1,6 +1,7 @@
 import { Card, Table, Tooltip } from 'antd';
 import { ReportToolTipTitle } from '@/components';
-import { Pie } from '@ant-design/plots';
+import React, { useState, useEffect } from 'react';
+import { Sunburst } from '@ant-design/plots';
 const getColorBasedOnScore = (score:any) => {
   if (score <= 25) return '#FFDDDD';
   if (score <= 50) return '#FFBBBB';
@@ -11,60 +12,56 @@ const getColorBasedOnScore = (score:any) => {
 
 
 const ChartInlineContainer=({framework}:any)=>{
-  let subData=[];
-  let terData=[];
-  subData=framework.subElementDTOList.map((obj:any)=>({type:obj.subElementName,value:obj.score}));
-  for(let i of framework.subElementDTOList){
-    for(let j of i.tertiaryElementDTOList){
-      terData.push({
-        type:j.tertiaryElementName,value:j.score
-      })
+  const [data, setData] = useState({});
+  useEffect(() => {
+    let temp={
+      name:framework.frameworkName,
+      value:framework.score,
+      label:'123',
+      children: framework.subElementDTOList.map((subElement:any) => ({
+        name:subElement.subElementName,
+        value:subElement.value,
+        children: subElement.tertiaryElementDTOList.map((tertiaryElement:any) => ({
+          name:tertiaryElement.tertiaryElementName,
+          value:tertiaryElement.score,
+          children: tertiaryElement.indicatorDTOList.map((indicator:any)=>({
+            name:indicator.indicatorName,
+            value:indicator.score,
+            label:indicator.indicatorName,
+            
+          })),
+          
+        })),
+      })),
     }
-  }
- 
-  const subConfig = {
-    appendPadding: 10,
-    data:subData,
-    angleField: 'value',
-    colorField: 'type',
-    radius: 0.8,
-    label: {
-      type: 'outer',
-      content: '{name} {percentage}',
-    },
+    setData(temp);
+  }, []);
+  
+  const config = {
+    data,
+    innerRadius: 0.3,
     interactions: [
-      {
-        type: 'pie-legend-active',
-      },
       {
         type: 'element-active',
       },
     ],
-  };
-
-  const terConfig = {
-    appendPadding: 10,
-    data:terData,
-    angleField: 'value',
-    colorField: 'type',
-    radius: 0.8,
+    
     label: {
-      type: 'outer',
-      content: '{name} {percentage}',
-    },
-    interactions: [
-      {
-        type: 'pie-legend-active',
-      },
-      {
-        type: 'element-active',
-      },
-    ],
+      layout: [
+        {
+          type: 'adjust-position',
+        },
+      ],
+      style: {
+        fill: '#000',
+        fontSize: 10,
+      }
+      
+    }
   };
   return (
   <div style={{display:'flex',flexDirection:'row',justifyContent:'space-evenly',alignContent:'center'}}>
-    <Pie {...subConfig} />
-    <Pie {...terConfig} />
+    <Sunburst {...config} />
   </div>)
 }
 
