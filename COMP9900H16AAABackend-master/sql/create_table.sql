@@ -203,10 +203,18 @@ INSERT INTO TertiaryElements(tertiary_element_id,sub_element_id, tertiary_elemen
 
 -- report sample data
 
-INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value) VALUES(1,1,'大帅逼',1,2);
-INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value) VALUES(1,1,'大帅逼',2,4);
-INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value) VALUES(1,1,'大帅逼',3,2);
-INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value) VALUES(1,1,'大帅逼',4,1);
-INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value) VALUES(1,1,'大帅逼',5,6);
-INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value) VALUES(1,1,'大帅逼',6,2);
-INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value) VALUES(1,1,'大帅逼',7,5);
+INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value,framework_id) VALUES(1,1,'大帅逼',1,2,1);
+INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value,framework_id) VALUES(1,1,'大帅逼',2,4,1);
+INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value,framework_id) VALUES(1,1,'大帅逼',3,2,1);
+INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value,framework_id) VALUES(1,1,'大帅逼',4,1,1);
+INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value,framework_id) VALUES(1,1,'大帅逼',5,6,1);
+INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value,framework_id) VALUES(1,1,'大帅逼',6,2,1);
+INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value,framework_id) VALUES(1,1,'大帅逼',7,5,1);
+
+INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value,framework_id) VALUES(2,1,'猛男',1,2,1);
+INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value,framework_id) VALUES(2,1,'猛男',2,4,1);
+INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value,framework_id) VALUES(2,1,'猛男',3,2,1);
+INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value,framework_id) VALUES(2,1,'猛男',4,6,1);
+INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value,framework_id) VALUES(2,1,'猛男',5,6,1);
+INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value,framework_id) VALUES(2,1,'猛男',6,3,1);
+INSERT INTO Reports(report_id,user_id,company_name,indicator_id,ipt_value,framework_id) VALUES(2,1,'猛男',7,9,1);
