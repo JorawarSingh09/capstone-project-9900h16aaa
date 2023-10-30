@@ -1,7 +1,10 @@
 import { getFrameworkByIdUsingGET } from '@/services/ant-design-pro/frameworkController';
 import { getDefaultFrameworkUsingGET } from '@/services/ant-design-pro/userController';
 import { PageContainer, ProCard } from '@ant-design/pro-components';
+import { CaretRightOutlined } from '@ant-design/icons';
 import { Button, Modal, message } from 'antd';
+import { ReportCardHeader } from '@/components';
+import { Collapse, theme } from 'antd';
 import React, { useEffect, useState } from 'react';
 import ReportTable from './ReportTable';
 import './index.less';
@@ -34,7 +37,7 @@ const addChart: React.FC = () => {
   const [reports, setReports] = useState<API.ReportDTO[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [frameworks, setFrameworks] = useState<API.FrameworkDTO[]>([]);
-
+  const { token } = theme.useToken();
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -85,15 +88,22 @@ const addChart: React.FC = () => {
         tabProps={{
           type: 'editable-card',
           hideAdd: false,
-          onEdit: (e, action) => console.log(e, action),
+          onEdit: (e : any, action: any) => console.log(e, action),
         }}
       >
         <ProCard direction="column" ghost gutter={[0, 16]}>
-          {reports.map((report, idx) => (
-            <div key={idx}>
-              <ReportTable report={report} />
-            </div>
-          ))}
+          <Collapse accordion bordered={false} style={{ background: '#F5F7FA' }} expandIconPosition={'end'} expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}  items={reports.map((report, idx) => (
+            {
+              key: idx,
+              label: <ReportCardHeader companyName={report.companyName} frameworkName={report.frameworkDTO.frameworkName} score=''></ReportCardHeader>,
+              children: <ReportTable report={report} />,
+              style:{ border:'none',marginBottom: 24,background: token.colorFillAlter,borderRadius: token.borderRadiusLG, 
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}
+            }
+           
+          ))}/>
+
+         
         </ProCard>
 
       </PageContainer>
