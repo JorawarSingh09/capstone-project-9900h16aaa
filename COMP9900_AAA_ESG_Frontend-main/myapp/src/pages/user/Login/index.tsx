@@ -26,7 +26,6 @@ const LoginMessage: React.FC<{
   );
 };
 const Login: React.FC = () => {
-  const [userLoginState, setUserLoginState] = useState<API.loginUserParams>({});
   const [type, setType] = useState<string>('account');
   const { initialState, setInitialState } = useModel('@@initialState');
   const containerClassName = useEmotionCss(() => {
@@ -62,7 +61,6 @@ const Login: React.FC = () => {
       history.push(urlParams.get('redirect') || '/');
     } catch (error) {
       const defaultLoginFailureMessage = 'Login failed, please try again!';
-      console.log(error);
       message.error(defaultLoginFailureMessage);
     }
   };
@@ -100,9 +98,9 @@ const Login: React.FC = () => {
         >
           <h2>Please Login</h2>
 
-          {status === 'error' && loginType === 'account' && (
+          {/* {status === 'error' && loginType === 'account' && (
             <LoginMessage content={'Incorrect username/password(admin/ant.design)'} />
-          )}
+          )} */}
           {type === 'account' && (
             <>
               <ProFormText
