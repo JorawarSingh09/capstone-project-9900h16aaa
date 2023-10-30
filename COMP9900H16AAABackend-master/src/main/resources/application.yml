@@ -21,8 +21,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/ESG
     username: root
-#    password: Pty-990827
-    password: ZbW55866
+    password: Pty-990827
+#    password: ZbW55866
 
   mail:
     host: smtp.163.com
