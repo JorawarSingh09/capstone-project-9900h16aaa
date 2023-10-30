@@ -14,10 +14,10 @@ export default [
       { component: './404' },
     ],
   },
+  { name: 'HomePage', path: '/framework', icon: 'smile', component: './Framework' },
 
   { name: 'Dashboard', path: '/add_chart', icon: 'smile', component: './addChart' },
 
-  { name: 'Framework', path: '/framework', icon: 'smile', component: './Framework' },
   {
     path: '/admin',
     icon: 'crown',
@@ -29,7 +29,7 @@ export default [
     ],
   },
 
-  { path: '/', redirect: '/add_chart' },
+  { path: '/', redirect: '/framework' },
   // { path: '*', layout: false, component: './404' },
   { path: '*', layout: false, component: './404' },
 ];

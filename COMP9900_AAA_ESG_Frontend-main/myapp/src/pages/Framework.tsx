@@ -55,7 +55,7 @@ const InfoCard: React.FC<{
         style={{
           fontSize: '16px',
           color: token.colorText,
-          flex: 1, // 允许标题区域在有空间时扩展
+          flex: 1, //  
           marginLeft: 10, // 为了视觉间距
         }}
       >
@@ -127,7 +127,7 @@ const Framework: React.FC = () => {
             {cards.map((card, index) => (
               <InfoCard
                 key={index}
-                index={card.frameworkId} // 假设API返回的数据中有index属性
+                index={card.frameworkId} // 
                 title={card.frameworkName} // 假设API返回的数据中有title属性
               />
             ))}
