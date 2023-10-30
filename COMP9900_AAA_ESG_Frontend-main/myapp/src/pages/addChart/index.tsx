@@ -6,7 +6,7 @@ import { Button, Modal, message } from 'antd';
 import { ReportCardHeader } from '@/components';
 import { Collapse, theme } from 'antd';
 import React, { useEffect, useState } from 'react';
-import ReportTable from './ReportTable'; // 确保正确地导入 ReportTable
+import ReportTable from './ReportTable'; 
 import './index.less';
 
 const handleAdd = async (fields: API.ReportDTO) => {
@@ -106,7 +106,7 @@ const addChart: React.FC = () => {
          
         </ProCard>
       </PageContainer>
-      <Modal title="New Report" visible={isModalVisible} onCancel={handleCancel}>
+      <Modal title="New Report" open={isModalVisible} onCancel={handleCancel}>
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           {frameworks.map((framework, idx) => (
             <div key={idx} style={{ flex: '0 0 50%', padding: '5px', boxSizing: 'border-box' }}>

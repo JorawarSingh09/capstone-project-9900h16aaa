@@ -17,7 +17,6 @@ const InfoCard: React.FC<{
 }> = ({ title, index, onEdit }) => {
   const { useToken } = theme;
   const { token } = useToken();
-
   return (
     <div
       style={{
@@ -55,7 +54,7 @@ const InfoCard: React.FC<{
         style={{
           fontSize: '16px',
           color: token.colorText,
-          flex: 1, // 允许标题区域在有空间时扩展
+          flex: 1, //
           marginLeft: 10, // 为了视觉间距
         }}
       >
@@ -72,6 +71,11 @@ const InfoCard: React.FC<{
     </div>
   );
 };
+
+function handleEditClick() {
+  console.log("Edit button clicked!");
+  // 你可以在这里放入其他的代码来定义你的逻辑
+}
 
 const Framework: React.FC = () => {
   const { token } = theme.useToken();
@@ -127,8 +131,9 @@ const Framework: React.FC = () => {
             {cards.map((card, index) => (
               <InfoCard
                 key={index}
-                index={card.frameworkId} // 假设API返回的数据中有index属性
-                title={card.frameworkName} // 假设API返回的数据中有title属性
+                index={card.frameworkId} //
+                title={card.frameworkName} //
+                onEdit = {handleEditClick}
               />
             ))}
           </div>
