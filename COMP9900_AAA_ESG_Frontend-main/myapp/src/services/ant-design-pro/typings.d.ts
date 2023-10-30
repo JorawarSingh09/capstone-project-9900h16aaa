@@ -15,11 +15,11 @@ declare namespace API {
   };
 
   type FrameworkDTO = {
-    frameworkId?: number;
-    frameworkName?: string;
-    score?: number;
-    subElementDTOList?: SubElementDTO[];
-    userId?: number;
+    frameworkId: number;
+    frameworkName: string;
+    score: number;
+    subElementDTOList: SubElementDTO[];
+    userId: number;
   };
 
   type getFrameworkByIdUsingGET1Params = {
@@ -33,12 +33,12 @@ declare namespace API {
   };
 
   type IndicatorDTO = {
-    eleWeight?: number;
-    indicatorId?: number;
-    indicatorName?: string;
-    iptValue?: number;
-    score?: number;
-    tertiaryElementId?: number;
+    eleWeight: number;
+    indicatorId: number;
+    indicatorName: string;
+    iptValue: number;
+    score: number;
+    tertiaryElementId: number;
   };
 
   type insertFrameworkReportUsingPOSTParams = {
@@ -125,27 +125,27 @@ declare namespace API {
   };
 
   type ReportDTO = {
-    companyName?: string;
-    frameworkDTO?: FrameworkDTO;
-    userId?: number;
+    companyName: string;
+    frameworkDTO: FrameworkDTO;
+    userId: number;
   };
 
   type SubElementDTO = {
-    eleWeight?: number;
-    frameworkId?: number;
-    score?: number;
-    subElementId?: number;
-    subElementName?: string;
-    tertiaryElementDTOList?: TertiaryElementDTO[];
+    eleWeight: number;
+    frameworkId: number;
+    score: number;
+    subElementId: number;
+    subElementName: string;
+    tertiaryElementDTOList: TertiaryElementDTO[];
   };
 
   type TertiaryElementDTO = {
-    eleWeight?: number;
-    indicatorDTOList?: IndicatorDTO[];
-    score?: number;
-    subElementId?: number;
-    tertiaryElementId?: number;
-    tertiaryElementName?: string;
+    eleWeight: number;
+    indicatorDTOList: IndicatorDTO[];
+    score: number;
+    subElementId: number;
+    tertiaryElementId: number;
+    tertiaryElementName: string;
   };
 
   type updatePasswordUsingPOSTParams = {

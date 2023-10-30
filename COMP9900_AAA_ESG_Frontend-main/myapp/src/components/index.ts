@@ -9,4 +9,5 @@ import Footer from './Footer';
 import { Question } from './RightContent';
 import { AvatarDropdown, AvatarName } from './RightContent/AvatarDropdown';
 import { ReportToolTipTitle} from './ToolTipTitle';
-export { AvatarDropdown, AvatarName, Footer, Question,ReportToolTipTitle};
+import { ReportCardHeader } from './ReportCardHeader';
+export { AvatarDropdown, AvatarName, Footer, Question,ReportToolTipTitle,ReportCardHeader};
