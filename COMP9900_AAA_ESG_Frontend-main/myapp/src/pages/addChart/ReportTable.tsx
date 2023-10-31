@@ -183,7 +183,7 @@ export const ReportTemplate = ({framework,companyNameIpt,userId}:any)=>{
                 }}
               >
                 <div>
-                  <Input onChange={(e)=>{handleInputChange(indicator.indicatorId,e)}}/>
+                  <Input onChange={(e)=>{handleInputChange(indicator,e)}}/>
                 </div>
               </div>
               
@@ -356,7 +356,7 @@ export const ReportTemplate = ({framework,companyNameIpt,userId}:any)=>{
                   }}
                 >
                   <div>
-                    <Input onChange={(e)=>{handleInputChange(indicator.indicatorId,e)}}/>
+                    <Input onChange={(e)=>{handleInputChange(indicator,e)}}/>
                   </div>
                 </div>
                 
@@ -437,9 +437,9 @@ export const ReportTemplate = ({framework,companyNameIpt,userId}:any)=>{
       />
       
       <Modal destroyOnClose title="Edit element" visible={isModalVisible} onCancel={handleCancel}>
-        {mode==1 &&<AddSubElement target={currentSelectedElement} data={data} setData={setData} />}
-        {mode==2 &&<AddTerElement target={currentSelectedElement} data={data} setData={setData} />}
-        {mode==3 &&<AddIndicator target={currentSelectedElement} data={data} setData={setData}/>}
+        {mode==1 &&<AddSubElement target={currentSelectedElement} data={data} setData={setData} handleCancel={handleCancel}/>}
+        {mode==2 &&<AddTerElement target={currentSelectedElement} data={data} setData={setData} handleCancel={handleCancel}/>}
+        {mode==3 &&<AddIndicator target={currentSelectedElement} data={data} setData={setData} handleCancel={handleCancel}/>}
       </Modal>
     <div style={{height:'800px'}}>
       <DecompositionTreeGraph {...config} />
@@ -447,7 +447,7 @@ export const ReportTemplate = ({framework,companyNameIpt,userId}:any)=>{
     </div>
   );
 }
-const AddSubElement=({target,data,setData}:any)=>{
+const AddSubElement=({target,data,setData,handleCancel}:any)=>{
   console.log(target);
   const [elementName, setElementName] = useState('');
   const [weight, setWeight] = useState(0);
@@ -484,7 +484,7 @@ const AddSubElement=({target,data,setData}:any)=>{
             eleWeight:weight
           })
           setData(reg);
-          
+          handleCancel();
         }}>Add</Button>
         </div>
       </div>
@@ -493,7 +493,7 @@ const AddSubElement=({target,data,setData}:any)=>{
    
 }
 
-const AddTerElement=({target,data,setData}:any)=>{
+const AddTerElement=({target,data,setData,handleCancel}:any)=>{
   const [elementName, setElementName] = useState('');
   const [weight, setWeight] = useState(0);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true); // 新增
@@ -545,18 +545,29 @@ const AddTerElement=({target,data,setData}:any)=>{
             eleWeight:weight
           })
           setData(reg);
-          
+          handleCancel();
         }}>Add</Button>
       </div>
       
      );
    
 }
-const AddIndicator=({target,data,setData}:any)=>{
+const AddIndicator=({target,data,setData,handleCancel}:any)=>{
   const [elementName, setElementName] = useState('');
   const [weight, setWeight] = useState(0);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true); // 新增
-  
+  const getTerId=()=>{
+    if(!data) return;
+    let max=-1;
+    for(let i of data.subElementDTOList){
+      for(let j of i.tertiaryElementDTOList){
+        for(let z of j.indicatorDTOList){
+          if(z.indicatorId>max) max=z.indicatorId;
+        }
+      }
+    }
+    return max+1;
+  }
   useEffect(() => {
     if (elementName.trim()!='' &&!isNaN(weight) && weight >=0) {
       setIsButtonDisabled(false);
@@ -584,6 +595,7 @@ const AddIndicator=({target,data,setData}:any)=>{
             for(let j of i.tertiaryElementDTOList){
               if(j.tertiaryElementId==target.tertiaryElementId) {
                 temp=j;
+                
               }
             }
           }
@@ -593,13 +605,14 @@ const AddIndicator=({target,data,setData}:any)=>{
           }
         
           temp.indicatorDTOList.push({
+            indicatorId:getTerId(),
             tertiaryElementId:target.tertiaryElementId,
             indicatorName:elementName,
             eleWeight:weight,
             iptValue:null
           })
           setData(reg);
-          
+          handleCancel();
         }}>Add</Button>
       </div>
       
