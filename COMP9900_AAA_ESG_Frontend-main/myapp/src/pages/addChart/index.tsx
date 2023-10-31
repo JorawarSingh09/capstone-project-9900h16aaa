@@ -14,6 +14,7 @@ import {useModel } from '@umijs/max';
 
 import ReportTable, {ReportTemplate} from './ReportTable'; // 确保正确地导入 ReportTable
 
+
 import './index.less';
 
 const handleAdd = async (fields: API.ReportDTO) => {
@@ -133,6 +134,7 @@ const addChart: React.FC = () => {
 
          
         </ProCard>
+
       </PageContainer>
 
       
