@@ -1,12 +1,15 @@
 import { getFrameworkByIdUsingGET } from '@/services/ant-design-pro/frameworkController';
-import { getDefaultFrameworkUsingGET } from '@/services/ant-design-pro/userController';
+import { getDefaultFrameworkUsingGET,getUserDefinedFrameworkUsingGET } from '@/services/ant-design-pro/userController';
 import { PageContainer, ProCard } from '@ant-design/pro-components';
 import { CaretRightOutlined } from '@ant-design/icons';
 import { Button, Modal, message } from 'antd';
 import { ReportCardHeader } from '@/components';
 import { Collapse, theme } from 'antd';
+import { ModalSeparatorLine } from '@/components';
 import React, { useEffect, useState } from 'react';
-import ReportTable from './ReportTable'; // 确保正确地导入 ReportTable
+import {useModel } from '@umijs/max';
+
+import ReportTable, {ReportTemplate} from './ReportTable'; // 确保正确地导入 ReportTable
 import './index.less';
 
 const handleAdd = async (fields: API.ReportDTO) => {
@@ -36,8 +39,13 @@ const getReportList = async () => {
 const addChart: React.FC = () => {
   const [reports, setReports] = useState<API.ReportDTO[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [displayEditModle,setDisplayEditModal]= useState(false);
   const [frameworks, setFrameworks] = useState<API.FrameworkDTO[]>([]);
+  const [userDefinedframeworks, setUserDefinedframeworks] = useState<API.FrameworkDTO[]>([]);
+  const [currentSelectedFramework,setCurrentSelectedFramework]=useState({frameworkName:'None'});
   const { token } = theme.useToken();
+  const [renderCount, setRenderCount] = useState(0);
+  const { initialState } = useModel('@@initialState');
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -46,27 +54,43 @@ const addChart: React.FC = () => {
     setIsModalVisible(false);
   };
 
-  const fetchFrameworks = async () => {
-    const fetchedFrameworks = await getDefaultFrameworkUsingGET();
-    if (fetchedFrameworks) {
-      setFrameworks(fetchedFrameworks);
-    }
-  };
+  const displayEdit =(framework:any)=>{
+    if(isModalVisible)setIsModalVisible(false);
+    setRenderCount(renderCount+1);
+    setCurrentSelectedFramework(framework);
+    console.log(framework)
+    setDisplayEditModal(true);
+    
+
+  }
+
+  const hideDisplayEdit =(framework:any)=>{
+    
+    setDisplayEditModal(false);
+    
+
+  }
 
   useEffect(() => {
+    
     const fetchData = async () => {
-      const fetchedReports = await getReportList();
-      if (fetchedReports) {
-        setReports(fetchedReports);
-      }
+      const fetchedReportsPromise = getReportList();
+      const fetchedFrameworksPromise = getDefaultFrameworkUsingGET();
+      const fetchedUserFrameworksPromise = getUserDefinedFrameworkUsingGET();
+
+      
+      const [fetchedReports, fetchedFrameworks, fetchedUserFrameworks] = await Promise.all([
+        fetchedReportsPromise,
+        fetchedFrameworksPromise,
+        fetchedUserFrameworksPromise
+      ]);
+      setReports(fetchedReports || []);
+      setFrameworks(fetchedFrameworks || []);
+      setUserDefinedframeworks(fetchedUserFrameworks || []);
     };
 
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    fetchFrameworks();
-  }, []);
+  }, [renderCount]);
 
   return (
     <div
@@ -107,15 +131,33 @@ const addChart: React.FC = () => {
         </ProCard>
       </PageContainer>
       <Modal title="New Report" visible={isModalVisible} onCancel={handleCancel}>
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-          {frameworks.map((framework, idx) => (
-            <div key={idx} style={{ flex: '0 0 50%', padding: '5px', boxSizing: 'border-box' }}>
-              <div style={{ background: '#e5e5e5', padding: '10px', borderRadius: '5px' }}>
-                {framework.frameworkName}
-              </div>
+        <div style={{marginTop:'30px'}}>
+          <ModalSeparatorLine title='Default frameworks'/>
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+              {frameworks.map((framework, idx) => (
+                <div key={idx} style={{ flex: '0 0 50%', padding: '5px', boxSizing: 'border-box' }} onClick={()=>{displayEdit(framework)}}>
+                  <div style={{ background: '#e5e5e5', padding: '10px', borderRadius: '5px' }}>
+                    {framework.frameworkName}
+                  </div>
+                  
+                </div>
+              ))}
+              <ModalSeparatorLine title='User defined frameworks'/>
+              {userDefinedframeworks.map((framework, idx) => (
+                <div key={idx} style={{ flex: '0 0 50%', padding: '5px', boxSizing: 'border-box' }}>
+                  <div style={{ background: '#e5e5e5', padding: '10px', borderRadius: '5px' }}>
+                    {framework.frameworkName}
+                  </div>
+                  
+                </div>
+              ))}
+              
             </div>
-          ))}
         </div>
+        
+      </Modal>
+      <Modal destroyOnClose title={currentSelectedFramework.frameworkName} visible={displayEditModle}  width='2000px'  onCancel={hideDisplayEdit}>
+        <ReportTemplate framework={currentSelectedFramework} companyNameIpt='' userId={initialState?.currentUser ?initialState?.currentUser.userId:''}/>
       </Modal>
     </div>
   );

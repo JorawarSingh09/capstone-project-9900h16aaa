@@ -46,10 +46,12 @@
     "not ie <= 10"
   ],
   "dependencies": {
+    "@ant-design/graphs": "^1.4.0",
     "@ant-design/icons": "^4.8.1",
     "@ant-design/plots": "^1.2.5",
     "@ant-design/pro-components": "^2.6.13",
     "@ant-design/use-emotion-css": "1.0.4",
+    "@antv/g6": "^4.8.23",
     "@umijs/route-utils": "^2.2.2",
     "antd": "^5.8.4",
     "classnames": "^2.3.2",
