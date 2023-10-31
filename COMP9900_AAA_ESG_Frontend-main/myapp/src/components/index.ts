@@ -10,4 +10,6 @@ import { Question } from './RightContent';
 import { AvatarDropdown, AvatarName } from './RightContent/AvatarDropdown';
 import { ReportToolTipTitle} from './ToolTipTitle';
 import { ReportCardHeader } from './ReportCardHeader';
-export { AvatarDropdown, AvatarName, Footer, Question,ReportToolTipTitle,ReportCardHeader};
+import { DemoDecompositionTreeGraph } from './FrameworkGraph';
+
+export { AvatarDropdown, AvatarName, Footer, Question,ReportToolTipTitle,ReportCardHeader, DemoDecompositionTreeGraph};
